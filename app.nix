@@ -10,7 +10,7 @@ let
   src = pkgs.fetchFromGitHub {
     owner = "pradeepchhetri";
     repo = "hello-world";
-    rev = "master";
+    rev = "4d8ff1806593a3e5e350625c23f45ccac9a8f79e";
     sha256 = "1c79svqzp1q740fbprwidsiws3dsiyz3afb039h7q6839b7fj8fw";
   };
 
