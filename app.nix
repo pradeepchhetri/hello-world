@@ -4,7 +4,14 @@ with lib; # provides mkOption, types, ...
 
 let
   # this env builds the python interpreter that you want to run your app against
-  env = pkgs.python27.withPackages (ps: [ ps.flask ]);
+  env = pkgs.python27Packages.buildPythonPackage rec {
+    name = "flask";
+    src = pkgs.fetchurl {
+      url = "https://github.com/pallets/flask/archive/0.12.tar.gz";
+      md5 = "05955d5210e075d6f80bc176ddaa07fe";
+    };
+    propagatedBuildInputs = [ pkgs.python27Packages.itsdangerous pkgs.python27Packages.click pkgs.python27Packages.werkzeug pkgs.python27Packages.jinja2 ];
+  };
 
   # fetch the source from github
   src = pkgs.fetchFromGitHub {
