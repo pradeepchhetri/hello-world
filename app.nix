@@ -5,11 +5,14 @@ with lib; # provides mkOption, types, ...
 let
   # this env builds the python interpreter that you want to run your app against
   env = pkgs.python27Packages.buildPythonPackage rec {
-    name = "flask";
+    name = "flask-${version}";
+    version = "0.12";
+
     src = pkgs.fetchurl {
-      url = "https://github.com/pallets/flask/archive/0.12.tar.gz";
-      md5 = "05955d5210e075d6f80bc176ddaa07fe";
+      url = "mirror://pypi/F/Flask/Flask-${version}.tar.gz";
+      md5 = "c1d30f51cff4a38f9454b23328a15c5a";
     };
+
     propagatedBuildInputs = [
       pkgs.python27Packages.itsdangerous
       pkgs.python27Packages.click
